@@ -1,54 +1,63 @@
 package ua.lviv.iot.spring.labseven.rest.RestAplication.model;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 
-//import org.hibernate.annotations.GeneratorType;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity.BodyBuilder;
-import org.springframework.http.ResponseEntity.HeadersBuilder;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-//import sun.jvm.hotspot.gc.shared.Generation;
 @Entity
 public class Student {
-	private String firsStudent;
-	private String secondStudent;
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
 
-	public Student(String firstStudent, String secondStudent) {
-		super();
-		// this.id=id;
-		this.firsStudent = firstStudent;
-		this.secondStudent = secondStudent;
-	}
+    private String firstName;
 
-	public Student() {
-	}
+    private String lastName;
 
-	public String getSecondStudent() {
-		return secondStudent;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	public void setSecondStudent(String secondStudent) {
-		this.secondStudent = secondStudent;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "group_id")
+    @JsonIgnoreProperties("students")
+    private Group group;
 
-	public String getFirsStudent() {
-		return firsStudent;
-	}
+    public Student() {
 
-	public void setFirsStudent(String firsStudent) {
-		this.firsStudent = firsStudent;
-	}
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Student(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }

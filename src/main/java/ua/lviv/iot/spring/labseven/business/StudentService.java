@@ -8,11 +8,11 @@ import ua.lviv.iot.spring.labseven.rest.RestAplication.model.Student;
 
 @Service
 public class StudentService {
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	public Student createStudent(Student student) {
+    public Student createStudent(Student student) {
 
-		return studentRepository.save(student);
-	}
+        return studentRepository.save(student);
+    }
 }
